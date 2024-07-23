@@ -1,8 +1,9 @@
-// Function to create element with ID
+// Function to create element with a class and ID
 
-function buildElement(elementName, elementID) {
+function buildElement(elementName, elementID, className) {
     const newElement = document.createElement(elementName);
     newElement.setAttribute("id", elementID);
+    newElement.classList.add(className);
     return newElement;
 }
 
@@ -11,9 +12,13 @@ function buildElement(elementName, elementID) {
 function createGrid(){
     container = document.querySelector("#container");
     let rowNum = 1;
-    let rowIDs = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"];
+    let columnIDs = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"];
     for (rowNum; rowNum <= 16; rowNum++) {
-        container.appendChild(buildElement("div", "row" + rowNum.toString()))
+        container.appendChild(buildElement("div", "row" + rowNum.toString(), "row"))
+        currentRow = document.querySelector(`#row${rowNum.toString()}`);
+        for (let columnID of columnIDs) {
+            currentRow.appendChild(buildElement("div", rowNum + columnID, "gridItem"));
+        }
     }
 }
 
