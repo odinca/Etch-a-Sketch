@@ -1,18 +1,18 @@
 #container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 40px;
 }
 
 .gridItem {
-    border: 1px solid black;
-    background-color: grey;
-    height: 50px;
-    width: 50px;
+    border: 1px solid rgb(105, 105, 105);
+    background-color: rgb(220, 220, 220);
+    height: 70px;
+    width: 70px;
 }
 
 .row {
     display: flex;
-    justify-content: center;
-    flex: auto;
 }
