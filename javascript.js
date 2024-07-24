@@ -1,5 +1,4 @@
-// Function to create element with a class and ID
-
+// Function to create element with a class
 function buildElement(elementName, className) {
     const newElement = document.createElement(elementName);
     newElement.classList.add(className);
@@ -7,7 +6,6 @@ function buildElement(elementName, className) {
 }
 
 // Function to build grid
-
 function createGrid(squaresPerRow = 16){
     const container = document.querySelector("#container");
     for (let rowNum = 1; rowNum <= squaresPerRow; rowNum++) {
@@ -17,11 +15,10 @@ function createGrid(squaresPerRow = 16){
         }
     }
     changeColour();
-    newGameButton();
+    
 }
 
-// Function to change colour of mouse selected element
-
+// Function to change colour of mouseover element
 function changeColour() {
     const square = document.querySelector("#container");
 
@@ -36,9 +33,18 @@ function newGameButton() {
     const btn = document.querySelector("button");
     btn.addEventListener("click", () => {
         let numberOfSquares = prompt("Please select the number of squares per side for your new canvas (default = 16).");
+        removeElementsArray(".gridItem");
+        removeElementsArray(".row");
         return createGrid(Number(numberOfSquares));
     })
 }
 
+// Function to remove elements
+function removeElementsArray(selectedElements) {
+    const elementsArray = document.querySelectorAll(selectedElements);
+    elementsArray.forEach(element => element.remove())
+}
+
 createGrid();
 
+newGameButton();
