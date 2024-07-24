@@ -1,25 +1,23 @@
 // Function to create element with a class and ID
 
-function buildElement(elementName, elementID, className) {
+function buildElement(elementName, className) {
     const newElement = document.createElement(elementName);
-    newElement.setAttribute("id", elementID);
     newElement.classList.add(className);
     return newElement;
 }
 
 // Function to build grid
 
-function createGrid(){
+function createGrid(squaresPerRow = 16){
     const container = document.querySelector("#container");
-    let columnIDs = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"];
-    for (let rowNum = 1; rowNum <= 16; rowNum++) {
-        container.appendChild(buildElement("div", "row" + rowNum.toString(), "row"))
-        const currentRow = document.querySelector(`#row${rowNum.toString()}`);
-        for (let columnID of columnIDs) {
-            currentRow.appendChild(buildElement("div", rowNum + columnID, "gridItem"));
+    for (let rowNum = 1; rowNum <= squaresPerRow; rowNum++) {
+        let currentRow = container.appendChild(buildElement("div", "row"))
+        for (let columnNum = 1; columnNum <= squaresPerRow; columnNum++) {
+            currentRow.appendChild(buildElement("div", "gridItem"));
         }
     }
     changeColour();
+    newGameButton();
 }
 
 // Function to change colour of mouse selected element
@@ -34,5 +32,13 @@ function changeColour() {
     });
 }
 
-createGrid ();
+function newGameButton() {
+    const btn = document.querySelector("button");
+    btn.addEventListener("click", () => {
+        let numberOfSquares = prompt("Please select the number of squares per side for your new canvas (default = 16).");
+        return createGrid(Number(numberOfSquares));
+    })
+}
+
+createGrid();
 
