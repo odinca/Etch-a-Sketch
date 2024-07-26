@@ -14,8 +14,16 @@ function createGrid(squaresPerRow = 16){
             currentRow.appendChild(buildElement("div", "gridItem"));
         }
     }
-    changeColour();
-    
+    changeColour();   
+}
+
+// Function to dynamically set dimensions of grid square
+function squareDimensions(rowWidth = 960, numOfSquares) {
+    const squareDimension = rowWidth / numOfSquares;
+    const gridSquare = document.querySelector(".gridItem");
+    const rowItem = document.querySelector(".row");
+    rowItem.style.cssText = `width: ${rowWidth}`;
+    gridSquare.style.cssText = `height: ${squareDimension}px; width: ${rowWidth}px`;
 }
 
 // Function to change colour of mouseover element
@@ -33,9 +41,11 @@ function newGameButton() {
     const btn = document.querySelector("button");
     btn.addEventListener("click", () => {
         let numberOfSquares = prompt("Please select the number of squares per side for your new canvas (default = 16).");
+        numberOfSquares = Number(numberOfSquares);
+        if (isNaN(numberOfSquares) || numberOfSquares === 0) {numberOfSquares = 16};
         removeElementsArray(".gridItem");
         removeElementsArray(".row");
-        return createGrid(Number(numberOfSquares));
+        return createGrid(numberOfSquares);
     })
 }
 
@@ -44,6 +54,7 @@ function removeElementsArray(selectedElements) {
     const elementsArray = document.querySelectorAll(selectedElements);
     elementsArray.forEach(element => element.remove())
 }
+
 
 createGrid();
 
