@@ -14,6 +14,7 @@ function createGrid(squaresPerRow = 16){
             currentRow.appendChild(buildElement("div", "gridItem"));
         }
     }
+    squareDimensions(960, squaresPerRow);
     changeColour();   
 }
 
