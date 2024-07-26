@@ -9,8 +9,6 @@
 .gridItem {
     border: 1px solid rgb(105, 105, 105);
     background-color: rgb(220, 220, 220);
-    height: 70px;
-    width: 70px;
 }
 
 .row {
