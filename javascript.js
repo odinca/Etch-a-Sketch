@@ -6,25 +6,18 @@ function buildElement(elementName, className) {
 }
 
 // Function to build grid
-function createGrid(squaresPerRow = 16){
+function createGrid(squaresPerRow = 16, rowWidth = 960){
+    const squareDimension = rowWidth / squaresPerRow;
     const container = document.querySelector("#container");
     for (let rowNum = 1; rowNum <= squaresPerRow; rowNum++) {
         let currentRow = container.appendChild(buildElement("div", "row"))
+        currentRow.style.cssText = `width: ${rowWidth}px`;
         for (let columnNum = 1; columnNum <= squaresPerRow; columnNum++) {
-            currentRow.appendChild(buildElement("div", "gridItem"));
+            let gridSquare = currentRow.appendChild(buildElement("div", "gridItem"));
+            gridSquare.style.cssText = `height: ${squareDimension}px; width: ${squareDimension}px`
         }
     }
-    squareDimensions(960, squaresPerRow);
     changeColour();   
-}
-
-// Function to dynamically set dimensions of grid square
-function squareDimensions(rowWidth = 960, numOfSquares) {
-    const squareDimension = rowWidth / numOfSquares;
-    const gridSquare = document.querySelector(".gridItem");
-    const rowItem = document.querySelector(".row");
-    rowItem.style.cssText = `width: ${rowWidth}`;
-    gridSquare.style.cssText = `height: ${squareDimension}px; width: ${rowWidth}px`;
 }
 
 // Function to change colour of mouseover element
