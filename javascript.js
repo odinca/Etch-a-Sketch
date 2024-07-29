@@ -34,9 +34,11 @@ function changeColour() {
 function newGameButton() {
     const btn = document.querySelector("button");
     btn.addEventListener("click", () => {
-        let numberOfSquares = prompt("Please select the number of squares per side for your new canvas (default = 16).");
+        let numberOfSquares = prompt("Please select the number of squares (1-100) per side for your new canvas (default = 16).");
         numberOfSquares = Number(numberOfSquares);
-        if (isNaN(numberOfSquares) || numberOfSquares === 0) {numberOfSquares = 16};
+        if (isNaN(numberOfSquares) || numberOfSquares === 0 || numberOfSquares > 100) {
+            numberOfSquares = 16
+        };
         removeElementsArray(".gridItem");
         removeElementsArray(".row");
         return createGrid(numberOfSquares);
